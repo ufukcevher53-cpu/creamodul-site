@@ -3,7 +3,7 @@ window.CM = {
   modules: [
     {
       id: "kafe", slug: "kafe-restoran-qr-siparis",
-      name: "Kafe & Restoran: Ürün Oluşturucu + QR Sipariş",
+      name: "Kafe & Restoran: Ürün Oluşturucu",
       short: "Müşteri burgerini, waffle'ını ya da bowl'unu masadaki QR'dan kendisi oluşturur; sipariş anında kasaya düşer.",
       img: "burger.jpg",
       demos: [["Burger demosu", "https://burger.creamodul.com"], ["Waffle + kasa demosu", "https://wafforia.creamodul.com"]],

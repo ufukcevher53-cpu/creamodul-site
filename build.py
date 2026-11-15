@@ -47,7 +47,7 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 
 def jsonld(o): return f'<script type="application/ld+json">{json.dumps(o, ensure_ascii=False)}</script>'
 ORG = {"@context": "https://schema.org", "@type": "Organization", "name": "Creamodul", "url": BASE, "logo": BASE + "/assets/img/og.jpg",
-       "sameAs": ["https://www.instagram.com/creamodul/"], "description": "İşletmeler için hazır dijital modüller: QR sipariş, ürün oluşturucu, Google yorum kartı, 3D anatomi videoları."}
+       "sameAs": ["https://www.instagram.com/creamodul/"], "description": "İşletmeler için hazır dijital modüller: ürün oluşturucu, buket oluşturucu, Google yorum kartı, 3D anatomi videoları."}
 
 TILE_IMG = {"kafe": "burger.jpg", "cicek": "foto-cicek.jpg", "yorum": "yorum.jpg", "anatomi": "anatomi.jpg"}
 rack = "".join(f'<a class="tile {m["id"]}{" photo" if m["id"]=="cicek" else ""}" href="/moduller/{m["slug"]}/"><span>{E(title_of(m))}</span><img src="/assets/img/{TILE_IMG[m["id"]]}" alt=""></a>' for m in MODS)
@@ -70,7 +70,7 @@ faq = [("Teslim ne kadar sürer?", "Ödeme onayından sonra 4–5 iş günü iç
 FAQLD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
 body = f"""<section class="hero"><div class="w"><div>
 <h1>İşletmenize hazır dijital modüller</h1>
-<p class="lead">QR sipariş, ürün oluşturucu, Google yorum kartı, kliniklere 3D anatomi videoları. Modülünüzü seçin, bilgilerinizi verin; biz kurup 4–5 iş gününde teslim edelim.</p>
+<p class="lead">Müşterinin ürününü kendisi oluşturduğu sipariş ekranları, Google yorum kartı, kliniklere 3D anatomi videoları. Modülünüzü seçin, bilgilerinizi verin; biz kurup 4–5 iş gününde teslim edelim.</p>
 <div class="cta"><a class="btn br" href="/siparis/">Sipariş ver</a><a class="btn gh" href="#moduller">Modülleri incele</a></div>
 <ul class="facts"><li>Uzaktan kurulum</li><li>Aylık planda ilk ay ücretsiz</li><li>Faturalı çalışma</li></ul></div>
 <div class="rack">{rack}</div></div></section>
@@ -87,12 +87,12 @@ body = f"""<section class="hero"><div class="w"><div>
 <section id="sss"><div class="w" style="max-width:840px"><div class="sh"><h2>Sık sorulan sorular</h2></div>
 {''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q,a in faq)}
 <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap"><a class="btn br" href="/siparis/">Sipariş ver</a><a class="btn gh" href="https://www.instagram.com/creamodul/" rel="noopener">Instagram'dan yazın</a></div></div></section>"""
-page("/", "Creamodul | İşletmelere hazır dijital modüller: QR sipariş, ürün oluşturucu, 3D anatomi",
-     "Kafe ve restoranlara QR sipariş ve ürün oluşturucu, çiçekçilere buket oluşturucu, Google yorum QR kartı ve kliniklere 3D anatomi videoları. Uzaktan kurulum, 4–5 iş gününde teslim.",
+page("/", "Creamodul | İşletmelere hazır dijital modüller",
+     "Kafe ve restoranlara ürün oluşturucu, çiçekçilere buket oluşturucu, Google yorum QR kartı ve kliniklere 3D anatomi videoları. Uzaktan kurulum, 4–5 iş gününde teslim.",
      body, jsonld(ORG) + jsonld(FAQLD))
 
 DESC = {
- "kafe": ("Kafe ve restoranlar için QR sipariş ve ürün oluşturucu | Creamodul", "Müşteriniz burgerini, waffle'ını masadaki QR'dan kendisi oluştursun; sipariş anında kasaya düşsün. Aylık 1.200 TL'den başlayan paketler, 4–5 günde kurulum.",
+ "kafe": ("Kafe ve restoranlar için ürün oluşturucu | Creamodul", "Müşteriniz burgerini, waffle'ını masadaki QR'dan kendisi oluştursun; sipariş anında kasaya düşsün. Aylık 1.200 TL'den başlayan paketler, 4–5 günde kurulum.",
           ["Müşteri ürününü adım adım kendisi oluşturur; ürün ekranda gözünün önünde hazırlanır.", "Fiyat seçtikçe anında hesaplanır, yanlış sipariş ve uzun açıklamalar biter.", "Her masanın kendi QR'ı var; sipariş masa numarasıyla kasaya ya da mutfağa düşer.", "Kasada sesli uyarı: onay bekleyen sipariş varken susmaz.", "Boş masadan gelen ilk sipariş onaya düşer; dışarıdan QR fotoğrafıyla sipariş verilemez.", "Menü Google'da çıkmaz, sadece masadaki QR ile açılır."], ["burger.jpg","waffle.jpg"]),
  "cicek": ("Çiçekçiler için buket oluşturucu | Creamodul", "Müşteriniz buketini çiçek çiçek kendisi oluştursun; fiyat anında hesaplansın, sipariş size düşsün. Çiçekçilere özel dijital modül.",
           ["Müşteri çiçeklerini, yeşilliğini, ambalajını ve kurdelesini seçer.", "Buket ekranda oluşur, fiyat seçtikçe hesaplanır.", "“Şundan üç tane, bundan iki tane” mesajlaşması biter; sipariş net gelir.", "Aynı yapı pastane, çikolatacı ve hediye kutusu için de kurulabilir."], ["cicek.jpg"]),
