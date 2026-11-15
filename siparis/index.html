@@ -4,20 +4,20 @@
 <link rel="canonical" href="https://creamodul.com/siparis/">
 <meta property="og:type" content="website"><meta property="og:title" content="Sipariş ver | Creamodul"><meta property="og:description" content="Creamodul modülünüzü seçin, paket ve ekstraları belirleyin, bilgilerinizi verin. Siparişiniz oluşsun, 4–5 iş gününde teslim edelim.">
 <meta property="og:url" content="https://creamodul.com/siparis/"><meta property="og:image" content="https://creamodul.com/assets/img/og.jpg"><meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0d0a07">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#F7F8FA">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap">
-<link rel="stylesheet" href="/assets/style.css"></head><body>
-<header class="top"><div class="w"><a class="logo" href="/">CREA<b>MODUL</b></a>
-<nav class="mn"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#nasil">Nasıl çalışır?</a><a class="hm" href="/#sss">SSS</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
-<main><section style="padding-top:40px"><div class="w"><div id="formWrap"><div class="sh"><span class="kick">Sipariş</span><h1 style="font-size:clamp(32px,5vw,48px)">Siparişinizi oluşturun</h1><p>Paketinizi ve ekstralarınızı seçin, bilgilerinizi verin. Siparişiniz oluşunca sizinle iletişime geçeriz; teslim 4–5 iş günü.</p></div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=2"></head><body>
+<header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>creamodul</a>
+<nav class="mn" aria-label="Ana menü"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
+<main><section style="padding-top:48px"><div class="w"><div id="formWrap"><div class="sh"><h1 style="font-size:clamp(32px,4.4vw,48px)">Siparişinizi oluşturun</h1><p>Paketinizi ve ekstralarınızı seçin, bilgilerinizi verin. Sipariş oluşturmak ödeme yapmak değildir; önce sizi arayıp detayları netleştiririz.</p></div>
 <form id="frm" class="ord" novalidate><div>
-<div class="box"><h3>1. Modül</h3><div class="opts" id="mods"></div></div>
-<div class="box hidden" id="bPkg"><h3>2. Paket</h3><div class="opts" id="pkgs"></div></div>
-<div class="box hidden" id="bExt"><h3>3. Ekstralar <span class="mu sm">(isteğe bağlı)</span></h3><div class="opts" id="exts"></div></div>
-<div class="box hidden" id="bDet"><h3>4. Detaylar</h3><div id="dets"></div></div>
-<div class="box"><h3>5. İletişim bilgileri</h3>
+<div class="box"><h3><i>1</i>Modül</h3><div class="opts" id="mods"></div></div>
+<div class="box hidden" id="bPkg"><h3><i>2</i>Paket</h3><div class="opts" id="pkgs"></div></div>
+<div class="box hidden" id="bExt"><h3><i>3</i>Ekstralar <span class="mute sm" style="font-family:var(--body);font-weight:400">isteğe bağlı</span></h3><div class="opts" id="exts"></div></div>
+<div class="box hidden" id="bDet"><h3><i>4</i>İşletmenizle ilgili</h3><div id="dets"></div></div>
+<div class="box"><h3><i>5</i>İletişim bilgileri</h3>
 <label class="f" for="o_bus">İşletme adı *</label><input class="i" id="o_bus" required autocomplete="organization">
 <label class="f" for="o_name">Adınız soyadınız *</label><input class="i" id="o_name" required autocomplete="name">
 <label class="f" for="o_tel">Telefon *</label><input class="i" id="o_tel" type="tel" required autocomplete="tel" placeholder="05xx xxx xx xx">
@@ -27,12 +27,16 @@
 <input id="o_web" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
 <label class="chk"><input type="checkbox" id="kvkk"><span><a href="/kvkk/" target="_blank">KVKK aydınlatma metnini</a> okudum; siparişim için benimle iletişime geçilmesini kabul ediyorum.</span></label>
 </div></div>
-<aside class="box sum"><h3>Özet</h3><div id="sumBody"></div><button class="btn" id="send" type="submit" style="width:100%;margin-top:16px">Siparişi oluştur</button><div class="err" id="err"></div>
-<p class="note mu sm" style="margin-top:10px">Siparişi oluşturmak ödeme yapmak değildir. Önce sizi arayıp detayları netleştiririz.</p></aside></form></div>
-<div id="done" class="box done hidden"><span class="kick">Teşekkürler</span><h2>Siparişiniz alındı</h2><p class="mu">Sipariş numaranız</p><div class="code" id="code"></div>
-<p>En geç 1 iş günü içinde sizi arayıp detayları netleştireceğiz. Ödeme onayından sonra 4–5 iş gününde teslim.</p>
-<div class="cta" style="justify-content:center"><a class="btn gh" href="/">Ana sayfaya dön</a><a class="btn gh" href="https://www.instagram.com/creamodul/" rel="noopener">Instagram'dan yazın</a></div></div></div></section></main>
-<footer><div class="w"><div><a class="logo" href="/">CREA<b>MODUL</b></a><p style="max-width:360px">İşletmenize hazır dijital modüller. Seçin, bilgilerinizi verin, 4–5 iş gününde teslim edelim.</p></div>
-<div><b style="color:var(--tx)">Modüller</b><br><a href="/moduller/kafe-restoran-qr-siparis/">Kafe &amp; Restoran</a><br><a href="/moduller/cicekci-buket-olusturucu/">Çiçekçi</a><br><a href="/moduller/google-yorum-karti/">Google Yorum QR Kartı</a><br><a href="/moduller/3d-anatomi-klinik/">3D Anatomi</a></div>
-<div><b style="color:var(--tx)">İletişim</b><br><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram · @creamodul</a><br><a href="/siparis/?modul=ozel">Özel modül talebi</a><br><a href="/kvkk/">KVKK aydınlatma metni</a></div></div>
-<div class="w" style="margin-top:24px">© 2026 Creamodul</div></footer><script src="/assets/data.js"></script><script src="/assets/order.js"></script></body></html>
+<aside class="box sum"><h3>Özet</h3><div id="sumBody"></div><button class="btn br" id="send" type="submit" style="width:100%;margin-top:18px">Siparişi oluştur</button><div class="err" id="err" role="alert"></div>
+<h3 style="margin-top:28px;font-size:16px">Sonra ne olacak?</h3><ol class="next"><li><b>Sipariş numaranız oluşur</b><span>Siparişiniz anında bize ulaşır.</span></li><li><b>1 iş günü içinde ararız</b><span>Detayları netleştirip ödeme bilgisini paylaşırız.</span></li><li><b>4–5 iş gününde teslim</b><span>Ödemeden sonra kurulum başlar.</span></li></ol></aside></form></div>
+<div id="done" class="done hidden"><div class="box" style="padding:36px"><h2>Siparişiniz alındı</h2><p class="mute">Sipariş numaranız</p><div class="code" id="code"></div>
+<ol class="next"><li class="ok"><b>Sipariş alındı</b><span>Bilgileriniz bize ulaştı.</span></li>
+<li><b>1 iş günü içinde sizi arayacağız</b><span>Detayları netleştirip ödeme bilgisini (havale / EFT) paylaşacağız.</span></li>
+<li><b>Kurulum</b><span>Ödeme onayından sonra 4–5 iş gününde kurup linklerinizi ve QR dosyalarınızı göndereceğiz.</span></li>
+<li><b>Teslim ve kısa eğitim</b><span>Nasıl kullanacağınızı birlikte gözden geçireceğiz.</span></li></ol>
+<p class="sm mute" style="margin-top:8px">Daha hızlı ilerlemek isterseniz sipariş numaranızla bize Instagram'dan yazabilirsiniz.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><a class="btn br" id="igBtn" href="https://ig.me/m/creamodul" target="_blank" rel="noopener">Instagram'dan yaz</a><button class="btn gh" id="cpBtn" type="button">Mesajı kopyala</button><a class="btn gh" href="/">Ana sayfa</a></div></div></div></div></section></main>
+<footer><div class="w"><div><a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i>creamodul</a><p>İşletmelere hazır dijital modüller. Paketinizi seçin, bilgilerinizi verin; 4–5 iş gününde kurup teslim edelim.</p></div>
+<div><b>Modüller</b><a href="/moduller/kafe-restoran-qr-siparis/">Ürün Oluşturucu + QR Sipariş</a><a href="/moduller/cicekci-buket-olusturucu/">Buket Oluşturucu</a><a href="/moduller/google-yorum-karti/">Google Yorum QR Kartı</a><a href="/moduller/3d-anatomi-klinik/">Klinikler İçin Video</a></div>
+<div><b>İletişim</b><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram: @creamodul</a><a href="/siparis/?modul=ozel">Özel modül talebi</a><a href="/kvkk/">KVKK aydınlatma metni</a></div>
+<div class="cp">© 2026 Creamodul</div></div></footer><script src="/assets/data.js?v=2"></script><script src="/assets/order.js?v=2"></script></body></html>

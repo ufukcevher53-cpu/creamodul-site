@@ -49,7 +49,7 @@
 
   function sum() {
     const el = $("#sumBody");
-    if (!mod) { el.innerHTML = `<p class="mu sm">Önce bir modül seçin.</p>`; return; }
+    if (!mod) { el.innerHTML = `<p class="mute sm">Seçtiğiniz modül ve paket burada görünür.</p>`; return; }
     if (mod === "ozel") { el.innerHTML = `<div class="row"><span>Sektörünüze özel modül</span><b>Teklif</b></div><p class="note">Talebinizi aldıktan sonra kapsam ve fiyatı birlikte netleştiririz.</p>`; return; }
     const ex = chosenExtras();
     const once = (pkg.setup || 0) + ex.reduce((a, e) => a + e.price, 0);
@@ -89,8 +89,11 @@
       if (!r.ok || !j || !j.code) throw new Error(j && j.message || "Hata");
       $("#formWrap").classList.add("hidden"); $("#done").classList.remove("hidden");
       $("#code").textContent = j.code; window.scrollTo(0, 0);
+      const msg = `Merhaba, creamodul.com üzerinden sipariş oluşturdum. Sipariş numaram: ${j.code} (${body.business}).`;
+      $("#cpBtn").onclick = async () => { try { await navigator.clipboard.writeText(msg); $("#cpBtn").textContent = "Kopyalandı"; } catch (e) { prompt("Mesajı kopyalayın:", msg); } };
+      $("#igBtn").onclick = () => { try { navigator.clipboard.writeText(msg); } catch (e) {} };
     } catch (x) {
-      err.textContent = "Sipariş gönderilemedi. Lütfen tekrar deneyin ya da bize Instagram'dan yazın (@creamodul)."; err.style.display = "block";
+      err.textContent = "Sipariş gönderilemedi. Bağlantınızı kontrol edip tekrar deneyin; sorun sürerse Instagram'dan @creamodul hesabına yazın."; err.style.display = "block";
       btn.disabled = false; btn.textContent = "Siparişi oluştur";
     }
   }
