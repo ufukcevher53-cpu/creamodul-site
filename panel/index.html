@@ -1,0 +1,38 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sipariş paneli | Creamodul</title><meta name="description" content="Yönetim paneli">
+<link rel="canonical" href="https://creamodul.com/panel/"><meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website"><meta property="og:title" content="Sipariş paneli | Creamodul"><meta property="og:description" content="Yönetim paneli">
+<meta property="og:url" content="https://creamodul.com/panel/"><meta property="og:image" content="https://creamodul.com/assets/img/og.jpg"><meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0d0a07">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="/assets/style.css"></head><body>
+<header class="top"><div class="w"><a class="logo" href="/">CREA<b>MODUL</b></a>
+<nav class="mn"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#nasil">Nasıl çalışır?</a><a class="hm" href="/#sss">SSS</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
+<main><section style="padding-top:40px"><div class="w"><h1 style="font-size:36px">Siparişler</h1>
+<div id="login" class="box" style="max-width:420px"><label class="f" for="pin">Panel şifresi</label><input class="i" id="pin" type="password"><button class="btn" id="go" style="margin-top:14px">Giriş</button><div class="err" id="perr"></div></div>
+<div id="list" class="hidden"><div class="cta" style="margin:0 0 18px"><button class="btn sm gh" id="ref">Yenile</button><select class="i" id="flt" style="width:auto"><option value="">Tümü</option><option>yeni</option><option>görüşüldü</option><option>hazırlanıyor</option><option>teslim edildi</option><option>iptal</option></select></div><div id="rows"></div></div></div></section></main>
+<footer><div class="w"><div><a class="logo" href="/">CREA<b>MODUL</b></a><p style="max-width:360px">İşletmenize hazır dijital modüller. Seçin, bilgilerinizi verin, 4–5 iş gününde teslim edelim.</p></div>
+<div><b style="color:var(--tx)">Modüller</b><br><a href="/moduller/kafe-restoran-qr-siparis/">Kafe &amp; Restoran</a><br><a href="/moduller/cicekci-buket-olusturucu/">Çiçekçi</a><br><a href="/moduller/google-yorum-karti/">Google Yorum QR Kartı</a><br><a href="/moduller/3d-anatomi-klinik/">3D Anatomi</a></div>
+<div><b style="color:var(--tx)">İletişim</b><br><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram · @creamodul</a><br><a href="/siparis/?modul=ozel">Özel modül talebi</a><br><a href="/kvkk/">KVKK aydınlatma metni</a></div></div>
+<div class="w" style="margin-top:24px">© 2026 Creamodul</div></footer><script>
+const SB="https://hvdmodrcagrbpxiwjdtq.supabase.co",K="sb_publishable_1y98p0cOvJN7kEL1kwKNbw_o6GieAKm";let PIN=sessionStorage.getItem("cmpin")||"";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rpc=(f,b)=>fetch(SB+"/rest/v1/rpc/"+f,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},body:JSON.stringify(b)}).then(async r=>{const j=await r.json();if(!r.ok)throw j;return j});
+const ST=["yeni","görüşüldü","hazırlanıyor","teslim edildi","iptal"];
+async function load(){try{const rows=await rpc("cm_list_orders",{p_pin:PIN});sessionStorage.setItem("cmpin",PIN);document.getElementById("login").classList.add("hidden");document.getElementById("list").classList.remove("hidden");draw(rows)}catch(e){document.getElementById("perr").textContent="Şifre hatalı.";document.getElementById("perr").style.display="block"}}
+function draw(rows){const f=document.getElementById("flt").value;rows=rows.filter(r=>!f||r.status===f);
+document.getElementById("rows").innerHTML=rows.length?rows.map(r=>`<div class="box"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><b style="font-family:JetBrains Mono;color:var(--acc)">${esc(r.code)}</b><span class="mu sm">${new Date(r.created_at).toLocaleString("tr-TR")}</span></div>
+<h3 style="margin-top:8px">${esc(r.business)} · <span class="mu" style="font-weight:600">${esc(r.contact)}</span></h3>
+<p><a href="tel:${esc(r.phone)}">${esc(r.phone)}</a> ${r.email?"· "+esc(r.email):""} ${r.city?"· "+esc(r.city):""}</p>
+<p><b>${esc(r.module)}</b> · ${esc(r.package_name)} · Tek seferlik <b>${(r.total_once||0).toLocaleString("tr-TR")} TL</b>${r.monthly?` · ${r.monthly.toLocaleString("tr-TR")} TL/ay`:""}</p>
+${(r.extras||[]).length?`<p class="mu sm">Ekstralar: ${r.extras.map(e=>esc(e.name)).join(", ")}</p>`:""}
+${Object.entries(r.details||{}).filter(([k,v])=>v).map(([k,v])=>`<p class="sm"><b>${esc(k)}:</b> ${esc(v)}</p>`).join("")}
+${r.note?`<p class="sm"><b>Not:</b> ${esc(r.note)}</p>`:""}
+<select class="i" style="width:auto" data-id="${r.id}">${ST.map(s=>`<option ${s===r.status?"selected":""}>${s}</option>`).join("")}</select></div>`).join(""):'<p class="mu">Sipariş yok.</p>';
+document.querySelectorAll("select[data-id]").forEach(s=>s.onchange=()=>rpc("cm_set_status",{p_pin:PIN,p_id:+s.dataset.id,p_status:s.value}).catch(()=>alert("Kaydedilemedi")))}
+document.getElementById("go").onclick=()=>{PIN=document.getElementById("pin").value;load()};document.getElementById("pin").onkeydown=e=>{if(e.key==="Enter"){PIN=e.target.value;load()}};
+document.getElementById("ref").onclick=load;document.getElementById("flt").onchange=load;if(PIN)load();
+</script></body></html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /panel/
+Sitemap: https://creamodul.com/sitemap.xml
