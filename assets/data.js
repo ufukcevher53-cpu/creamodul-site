@@ -6,7 +6,7 @@ window.CM = {
       name: "Kafe & Restoran: Ürün Oluşturucu",
       short: "Müşteri burgerini, waffle'ını ya da bowl'unu masadaki QR'dan kendisi oluşturur; sipariş anında kasaya düşer.",
       img: "burger.jpg",
-      demos: [["Burger demosu", "https://burger.creamodul.com"], ["Waffle + kasa demosu", "https://wafforia.creamodul.com"]],
+      demos: [["Waffle demosu", "/demo/waffle/?masa=B1"], ["Burger demosu", "https://burger.creamodul.com"]],
       packages: [
         { id: "kafe-aylik", name: "Aylık Plan", setup: 6000, monthly: 1200, hl: true,
           features: ["Kendi ürünlerinize göre oluşturucu (burger, waffle, pizza, bowl…)", "Masa QR'ları ve masaya özel sipariş", "Kasa / mutfak ekranı, sesli uyarı", "Menü ekleme-çıkarma ve fiyat değişiklikleri bizden", "İlk ay ücretsiz"] },
