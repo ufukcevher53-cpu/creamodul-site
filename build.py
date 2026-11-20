@@ -32,7 +32,7 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=2">{extra_head}</head><body>
+<link rel="stylesheet" href="/assets/style.css?v=3">{extra_head}</head><body>
 <header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa">{LOGO}</a>
 <nav class="mn" aria-label="Ana menü"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
 <main>{body}</main>
@@ -53,6 +53,7 @@ TILE_IMG = {"kafe": "burger.jpg", "cicek": "foto-cicek.jpg", "yorum": "yorum.jpg
 rack = "".join(f'<a class="tile {m["id"]}{" photo" if m["id"]=="cicek" else ""}" href="/moduller/{m["slug"]}/"><span>{E(title_of(m))}</span><img src="/assets/img/{TILE_IMG[m["id"]]}" alt=""></a>' for m in MODS)
 rows = ""
 for m in MODS:
+    if m["id"] == "kafe": continue
     pr, suf = start_price(m)
     demo = f'<a class="btn gh sm" href="{m["demos"][0][1]}" target="_blank" rel="noopener">Demoyu aç</a>' if m["demos"] else ""
     rows += f"""<div class="row-m"><div class="sw {m['id']}"><img src="/assets/img/{TILE_IMG[m['id']]}" alt=""></div>
@@ -61,6 +62,8 @@ for m in MODS:
 <div class="acts">{demo}<a class="btn sm" href="/moduller/{m['slug']}/">Paketler</a></div></div>"""
 rows += """<div class="row-m"><div class="sw ozel"></div><div><h3>Sektörünüze özel modül</h3><p>Aklınızdaki fikri yazın. İşletmenize özel modülü tasarlayıp kuralım.</p></div>
 <div class="price"><small>fiyat</small><b>Teklif</b></div><div class="acts"><a class="btn sm" href="/siparis/?modul=ozel">Talep gönder</a></div></div>"""
+KAFE = next(m for m in MODS if m["id"] == "kafe")
+KDEMO = KAFE["demos"][0][1] if KAFE["demos"] else "/moduller/" + KAFE["slug"] + "/"
 faq = [("Teslim ne kadar sürer?", "Ödeme onayından sonra 4–5 iş günü içinde kurulumu tamamlayıp linklerinizi ve QR'larınızı teslim ediyoruz."),
        ("Kurulum için yanınıza gelmeniz gerekiyor mu?", "Hayır. Her şey uzaktan kuruluyor. Size linkler, QR dosyaları ve kısa bir kullanım anlatımı gönderiyoruz."),
        ("Sipariş verdikten sonra ne oluyor?", "Siparişiniz bize düşer ve size bir sipariş numarası verilir. 1 iş günü içinde sizi arayıp detayları netleştiririz, ödeme bilgilerini paylaşırız. Ödemeden sonra kurulum başlar."),
@@ -68,27 +71,35 @@ faq = [("Teslim ne kadar sürer?", "Ödeme onayından sonra 4–5 iş günü iç
        ("Teknik bilgim yok, kullanabilir miyim?", "Evet. Müşteriniz QR'ı okutur, sipariş ekranınıza düşer. Aylık planlarda menü ve fiyat değişikliklerini biz yapıyoruz."),
        ("İşletmeme özel bir şey istiyorum.", "Sipariş sayfasında “Sektörüme özel modül”ü seçip fikrinizi yazın, size özel teklif hazırlayalım.")]
 FAQLD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
-body = f"""<section class="hero"><div class="w"><div>
-<h1>İşletmenize hazır dijital modüller</h1>
-<p class="lead">Müşterinin ürününü kendisi oluşturduğu sipariş ekranları, Google yorum kartı, kliniklere 3D anatomi videoları. Modülünüzü seçin, bilgilerinizi verin; biz kurup 4–5 iş gününde teslim edelim.</p>
-<div class="cta"><a class="btn br" href="/siparis/">Sipariş ver</a><a class="btn gh" href="#moduller">Modülleri incele</a></div>
-<ul class="facts"><li>Uzaktan kurulum</li><li>Aylık planda ilk ay ücretsiz</li><li>Faturalı çalışma</li></ul></div>
-<div class="rack">{rack}</div></div></section>
-<section class="alt" style="padding:0;border-top:0"><div class="w"><div class="duo">
-<figure><img src="/assets/img/foto-kafe.jpg" alt="Kafede masadaki QR'dan verilen sipariş tezgâhtaki tablete düşüyor" loading="lazy"><figcaption><b>Kafede</b>Müşteri masadaki QR'dan siparişini verir; sipariş tezgâhtaki tablete anında düşer.</figcaption></figure>
-<figure><img src="/assets/img/foto-cicek.jpg" alt="Çiçekçide buket siparişi tablete düşüyor" loading="lazy"><figcaption><b>Çiçekçide</b>Müşteri buketini ekranda kendisi oluşturur; sipariş net ve fiyatıyla size gelir.</figcaption></figure>
-</div></div></section>
-<section id="moduller"><div class="w"><div class="sh"><h2>Modüller</h2><p>Her modülün canlı demosu var. Deneyin, size uyan paketi seçin.</p></div><div class="cat">{rows}</div></div></section>
-<section id="surec" class="alt"><div class="w"><div class="sh"><h2>Siparişten teslime</h2><p>Kurulum için yanınıza gelmemiz gerekmiyor; her adım uzaktan ilerliyor.</p></div>
+body = f"""<section class="hero kh"><div class="w"><div>
+<p class="eyebrow">Kafe ve tatlıcılar için sipariş modülü</p>
+<h1>Siparişi müşteri kendisi oluştursun.</h1>
+<p class="lead">Müşteri waffle'ını, burgerini ya da tatlısını masadaki telefondan adım adım kendisi oluşturur; sipariş yazıldığı gibi tezgâha düşer. Yanlış sipariş biter, hesap büyür.</p>
+<div class="cta"><a class="btn br" href="/siparis/?modul=kafe">Kafem için başvur</a><a class="btn gh" href="#video">Videoyu izle</a></div>
+<ul class="facts"><li>4–5 iş gününde kurulum</li><li>İlk ay ücretsiz</li><li>Menünüzü biz giriyoruz</li></ul></div>
+<div class="phone"><video src="/assets/vid/olusturucu.mp4" poster="/assets/vid/olusturucu.jpg" autoplay muted loop playsinline aria-label="Müşterinin waffle'ını adım adım oluşturduğu ekran"></video></div></div></section>
+<section id="video" class="alt"><div class="w split"><div class="vid"><video src="/assets/vid/reklam.mp4" poster="/assets/vid/reklam.jpg" controls playsinline preload="none"></video></div>
+<div><h2>“Çilek olmasın” dedin. Duyan olmadı.</h2><p class="lead">Her kafede her gün yaşanıyor. Sebebi garson değil, sipariş yolunun kendisi:</p>
+<ol class="why"><li><b>Gürültü ve acele.</b> Kalabalık saatte sipariş yarım duyulur.</li><li><b>Kâğıttaki kısaltmalar.</b> “Wfl çkl çlk-” mutfakta herkes aynı okumaz.</li><li><b>Ekstralar ve değişiklikler.</b> “Sosu ayrı, fıstık bol” fişe sığmaz, akılda kalmaz.</li></ol>
+<p class="lead" style="margin-top:18px"><b style="color:var(--ink)">Çözüm:</b> sipariş müşteriden doğrudan ekrana. Arada kulak, kâğıt, hafıza yok.</p></div></div></section>
+<section id="nasil"><div class="w"><div class="sh"><h2>Nasıl çalışır?</h2><p>Müşteriniz hiçbir uygulama indirmez. Masadaki kodu okutur, gerisi ekranda.</p></div>
+<div class="how"><figure><img src="/assets/img/waffle1.jpg" alt="Hamur seçilmiş waffle" loading="lazy"><figcaption><b>1. Seçer</b>Hamur, çikolata, meyve, sos, dondurma. Ne istemiyorsa seçmez.</figcaption></figure>
+<figure><img src="/assets/img/waffle4.jpg" alt="Çikolata ve meyve eklenmiş waffle" loading="lazy"><figcaption><b>2. Görür</b>Her seçimde ürün ekranda gözünün önünde oluşur, fiyat anında hesaplanır.</figcaption></figure>
+<figure><img src="/assets/img/waffle6.jpg" alt="Tamamlanmış waffle" loading="lazy"><figcaption><b>3. Sipariş verir</b>Sipariş masa numarasıyla tezgâhtaki ekrana düşer; yazıldığı gibi.</figcaption></figure></div>
+<div class="kpk"><div><h3>Kafe &amp; Tatlıcı paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
+<div class="kp"><small>kurulum</small><b>6.000 TL</b><small>+ 1.200 TL / ay · ilk ay ücretsiz · KDV hariç</small></div>
+<div class="acts"><a class="btn gh" href="{KDEMO}" target="_blank" rel="noopener">Demoyu dene</a><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
+<section id="moduller" class="alt"><div class="w"><div class="sh"><h2>Diğer sektörler</h2><p>Aynı yaklaşım başka işletmeler için de hazır.</p></div><div class="cat">{rows}</div></div></section>
+<section id="surec"><div class="w"><div class="sh"><h2>Siparişten teslime</h2><p>Kurulum için yanınıza gelmemiz gerekmiyor; her adım uzaktan ilerliyor.</p></div>
 <div class="steps"><div class="st"><h3>Paketi seçin</h3><p>Demoyu deneyin, paketinizi ve ekstralarınızı seçin.</p></div>
 <div class="st"><h3>Formu doldurun</h3><p>İşletme bilgileriniz ve menünüz ya da ürünleriniz. Sipariş numaranız oluşur.</p></div>
 <div class="st"><h3>Görüşme ve ödeme</h3><p>1 iş günü içinde sizi arar, detayları netleştiririz. Ödeme havale / EFT ile.</p></div>
 <div class="st"><h3>Kurulum ve teslim</h3><p>4–5 iş gününde linkleriniz, QR'larınız ve kullanım anlatımı hazır.</p></div></div></div></section>
-<section id="sss"><div class="w" style="max-width:840px"><div class="sh"><h2>Sık sorulan sorular</h2></div>
+<section id="sss" class="alt"><div class="w" style="max-width:840px"><div class="sh"><h2>Sık sorulan sorular</h2></div>
 {''.join(f'<details><summary>{E(q)}</summary><p>{E(a)}</p></details>' for q,a in faq)}
 <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap"><a class="btn br" href="/siparis/">Sipariş ver</a><a class="btn gh" href="https://www.instagram.com/creamodul/" rel="noopener">Instagram'dan yazın</a></div></div></section>"""
-page("/", "Creamodul | İşletmelere hazır dijital modüller",
-     "Kafe ve restoranlara ürün oluşturucu, çiçekçilere buket oluşturucu, Google yorum QR kartı ve kliniklere 3D anatomi videoları. Uzaktan kurulum, 4–5 iş gününde teslim.",
+page("/", "Creamodul | Kafe ve tatlıcılar için sipariş modülü: müşteri ürününü kendisi oluşturur",
+     "Müşteri waffle'ını, burgerini, tatlısını masadaki telefondan kendisi oluşturur; sipariş yazıldığı gibi tezgâha düşer. Yanlış sipariş biter. 4–5 iş gününde uzaktan kurulum, ilk ay ücretsiz.",
      body, jsonld(ORG) + jsonld(FAQLD))
 
 DESC = {
