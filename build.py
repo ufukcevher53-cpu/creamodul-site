@@ -32,7 +32,7 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=6">{extra_head}</head><body>
+<link rel="stylesheet" href="/assets/style.css?v=7">{extra_head}</head><body>
 <header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa">{LOGO}</a>
 <nav class="mn" aria-label="Ana menü"><a class="hm" href="/yapabildiklerimiz/">Yapabildiklerimiz</a><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
 <main>{body}</main>
@@ -92,7 +92,7 @@ body = f"""<section class="hero kh"><div class="w"><div>
 <a class="prc" href="https://burger.creamodul.com" target="_blank" rel="noopener"><img src="/assets/img/burger_kare.jpg" alt="Burger" loading="lazy"><span><b>Burger</b>Demoyu dene</span></a>
 <a class="prc ph" href="/siparis/?modul=kafe"><div class="ic">+</div><span><b>Sizin ürününüz</b>Bowl, pizza, krep, kahve, dürüm…</span></a></div></div>
 <div class="kpk"><div><h3>Kafe &amp; Restoran paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
-<div class="kp"><small>kurulum</small><b>6.000 TL</b><small>+ 1.200 TL / ay · ilk ay ücretsiz · KDV hariç</small></div>
+<div class="kp"><span class="lz">Lansman fiyatı · ilk 6 işletmeye özel</span><small>kurulum</small><b><s>6.000</s> 3.000 TL</b><small>+ <s>1.200</s> 700 TL / ay · ilk ay ücretsiz · KDV hariç</small><small style="color:var(--ink);margin-top:4px">🎁 Hediye: 1 tanıtım Reels'i + Google yorum kartı</small></div>
 <div class="acts"><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
 <section id="yap"><div class="w"><div class="sh"><h2>Sadece sipariş değil</h2><p>QR menüden reklam filmine, işletmenizin dijital tarafını tek elden kuruyoruz.</p></div><div class="chipsx">{CHIPS}</div><div style="margin-top:22px"><a class="btn br" href="/yapabildiklerimiz/">Yapabildiklerimizin hepsi</a></div></div></section>
 <section id="moduller" class="alt"><div class="w"><div class="sh"><h2>Diğer sektörler</h2><p>Aynı yaklaşım başka işletmeler için de hazır.</p></div><div class="cat">{rows}</div></div></section>
@@ -109,7 +109,7 @@ page("/", "Creamodul | Kafe ve tatlıcılar için sipariş modülü: müşteri �
      body, jsonld(ORG) + jsonld(FAQLD))
 
 DESC = {
- "kafe": ("Kafe ve restoranlar için ürün oluşturucu | Creamodul", "Müşteriniz burgerini, waffle'ını masadaki QR'dan kendisi oluştursun; sipariş anında kasaya düşsün. Aylık 1.200 TL'den başlayan paketler, 4–5 günde kurulum.",
+ "kafe": ("Kafe ve restoranlar için ürün oluşturucu | Creamodul", "Müşteriniz burgerini, waffle'ını masadaki QR'dan kendisi oluştursun; sipariş anında kasaya düşsün. Lansman fiyatı: 3.000 TL kurulum + 700 TL/ay, ilk 6 işletmeye özel. 4–5 günde kurulum.",
           ["Müşteri ürününü adım adım kendisi oluşturur; ürün ekranda gözünün önünde hazırlanır.", "Fiyat seçtikçe anında hesaplanır, yanlış sipariş ve uzun açıklamalar biter.", "Her masanın kendi QR'ı var; sipariş masa numarasıyla kasaya ya da mutfağa düşer.", "Kasada sesli uyarı: onay bekleyen sipariş varken susmaz.", "Boş masadan gelen ilk sipariş onaya düşer; dışarıdan QR fotoğrafıyla sipariş verilemez.", "Menü Google'da çıkmaz, sadece masadaki QR ile açılır."], ["burger.jpg","waffle.jpg"]),
  "cicek": ("Çiçekçiler için buket oluşturucu | Creamodul", "Müşteriniz buketini çiçek çiçek kendisi oluştursun; fiyat anında hesaplansın, sipariş size düşsün. Çiçekçilere özel dijital modül.",
           ["Müşteri çiçeklerini, yeşilliğini, ambalajını ve kurdelesini seçer.", "Buket ekranda oluşur, fiyat seçtikçe hesaplanır.", "“Şundan üç tane, bundan iki tane” mesajlaşması biter; sipariş net gelir.", "Aynı yapı pastane, çikolatacı ve hediye kutusu için de kurulabilir."], ["cicek.jpg"]),
@@ -123,8 +123,8 @@ for m in MODS:
     pk = ""
     for p in m["packages"]:
         big = fmt(p.get("setup") or p.get("monthly")); suf = "" if p.get("setup") else "<small> / ay</small>"
-        pk += f"""<div class="pc{' hl' if p.get('hl') else ''}">{'<span class="tag">En çok tercih edilen</span>' if p.get('hl') and len(m['packages'])>1 else ''}<h3>{E(p['name'])}</h3>
-<div class="pr">{big}{suf}</div><div class="pr2">{E(price_line(p))} · KDV hariç</div>
+        pk += f"""<div class="pc{' hl' if p.get('hl') else ''}">{('<span class="tag lz">' + E(p['badge']) + '</span>') if p.get('badge') else ('<span class="tag">En çok tercih edilen</span>' if p.get('hl') and len(m['packages'])>1 else '')}<h3>{E(p['name'])}</h3>
+<div class="pr">{('<s>' + fmt(p['was']['setup']) + '</s> ') if p.get('was') else ''}{big}{suf}</div><div class="pr2">{E(price_line(p))} · KDV hariç</div>
 <ul>{''.join(f'<li>{E(f)}</li>' for f in p['features'])}</ul><a class="btn{' br' if p.get('hl') else ''}" href="/siparis/?paket={p['id']}">Bu paketle sipariş ver</a></div>"""
     ex = "".join(f'<div class="ex"><span>{E(e["name"])}</span><b>+{fmt(e["price"])}</b></div>' for e in m["extras"])
     demos = "".join(f'<a class="btn gh" href="{u}" target="_blank" rel="noopener">{E(n)}</a>' for n, u in m["demos"])

@@ -8,8 +8,8 @@ window.CM = {
       img: "burger.jpg",
       demos: [["Waffle demosu", "/demo/waffle/?masa=B1"], ["Burger demosu", "https://burger.creamodul.com"]],
       packages: [
-        { id: "kafe-aylik", name: "Aylık Plan", setup: 6000, monthly: 1200, hl: true,
-          features: ["Kendi ürünlerinize göre oluşturucu (burger, waffle, pizza, bowl…)", "Masa QR'ları ve masaya özel sipariş", "Kasa / mutfak ekranı, sesli uyarı", "Menü ekleme-çıkarma ve fiyat değişiklikleri bizden", "İlk ay ücretsiz"] },
+        { id: "kafe-aylik", name: "Aylık Plan", setup: 3000, monthly: 700, hl: true, was: { setup: 6000, monthly: 1200 }, badge: "Lansman fiyatı · ilk 6 işletmeye özel",
+          features: ["Kendi ürünlerinize göre oluşturucu (burger, waffle, pizza, bowl…)", "Masa QR'ları ve masaya özel sipariş", "Kasa / mutfak ekranı, sesli uyarı", "Menü ekleme-çıkarma ve fiyat değişiklikleri bizden", "İlk ay ücretsiz", "Hediye: kendi ürününüzden 1 tanıtım Reels'i + Google yorum kartı tasarımı"] },
         { id: "kafe-tek", name: "Tek Seferlik", setup: 18000, yearly: 3000,
           features: ["Aylık plandaki her şey", "Menüyü kendiniz yöneteceğiniz yönetici paneli", "Günlük stok / ürün açma-kapama", "İlk yıl bakım dahil, sonrası yıllık bakım"] }
       ],
