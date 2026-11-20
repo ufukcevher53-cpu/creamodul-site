@@ -32,7 +32,7 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=3">{extra_head}</head><body>
+<link rel="stylesheet" href="/assets/style.css?v=5">{extra_head}</head><body>
 <header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa">{LOGO}</a>
 <nav class="mn" aria-label="Ana menü"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
 <main>{body}</main>
@@ -72,23 +72,27 @@ faq = [("Teslim ne kadar sürer?", "Ödeme onayından sonra 4–5 iş günü iç
        ("İşletmeme özel bir şey istiyorum.", "Sipariş sayfasında “Sektörüme özel modül”ü seçip fikrinizi yazın, size özel teklif hazırlayalım.")]
 FAQLD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
 body = f"""<section class="hero kh"><div class="w"><div>
-<p class="eyebrow">Kafe ve tatlıcılar için sipariş modülü</p>
+<p class="eyebrow">Kafe, burgerci ve tatlıcılar için sipariş modülü</p>
 <h1>Siparişi müşteri kendisi oluştursun.</h1>
 <p class="lead">Müşteri waffle'ını, burgerini ya da tatlısını masadaki telefondan adım adım kendisi oluşturur; sipariş yazıldığı gibi tezgâha düşer. Yanlış sipariş biter, hesap büyür.</p>
 <div class="cta"><a class="btn br" href="/siparis/?modul=kafe">Kafem için başvur</a><a class="btn gh" href="#video">Videoyu izle</a></div>
 <ul class="facts"><li>4–5 iş gününde kurulum</li><li>İlk ay ücretsiz</li><li>Menünüzü biz giriyoruz</li></ul></div>
-<div class="phone"><video src="/assets/vid/olusturucu.mp4" poster="/assets/vid/olusturucu.jpg" autoplay muted loop playsinline aria-label="Müşterinin waffle'ını adım adım oluşturduğu ekran"></video></div></div></section>
+<div class="phones"><div class="phone p2"><img src="/assets/img/burger.jpg" alt="Burger oluşturucu ekranı" loading="lazy"></div><div class="phone"><video src="/assets/vid/olusturucu.mp4" poster="/assets/vid/olusturucu.jpg" autoplay muted loop playsinline aria-label="Müşterinin waffle'ını adım adım oluşturduğu ekran"></video></div></div></div></section>
 <section id="video" class="alt"><div class="w split"><div class="vid"><video src="/assets/vid/reklam.mp4" poster="/assets/vid/reklam.jpg" controls playsinline preload="none"></video></div>
 <div><h2>“Çilek olmasın” dedin. Duyan olmadı.</h2><p class="lead">Her kafede her gün yaşanıyor. Sebebi garson değil, sipariş yolunun kendisi:</p>
 <ol class="why"><li><b>Gürültü ve acele.</b> Kalabalık saatte sipariş yarım duyulur.</li><li><b>Kâğıttaki kısaltmalar.</b> “Wfl çkl çlk-” mutfakta herkes aynı okumaz.</li><li><b>Ekstralar ve değişiklikler.</b> “Sosu ayrı, fıstık bol” fişe sığmaz, akılda kalmaz.</li></ol>
 <p class="lead" style="margin-top:18px"><b style="color:var(--ink)">Çözüm:</b> sipariş müşteriden doğrudan ekrana. Arada kulak, kâğıt, hafıza yok.</p></div></div></section>
-<section id="nasil"><div class="w"><div class="sh"><h2>Nasıl çalışır?</h2><p>Müşteriniz hiçbir uygulama indirmez. Masadaki kodu okutur, gerisi ekranda.</p></div>
-<div class="how"><figure><img src="/assets/img/waffle1.jpg" alt="Hamur seçilmiş waffle" loading="lazy"><figcaption><b>1. Seçer</b>Hamur, çikolata, meyve, sos, dondurma. Ne istemiyorsa seçmez.</figcaption></figure>
+<section id="nasil"><div class="w"><div class="sh"><h2>Nasıl çalışır?</h2><p>Müşteriniz hiçbir uygulama indirmez. Masadaki kodu okutur, gerisi ekranda. Oluşturucu sizin ürünlerinize göre kurulur.</p></div>
+<div class="how"><figure><img src="/assets/img/burger_sec.jpg" alt="Burger oluşturucuda et seçimi" loading="lazy"><figcaption><b>1. Seçer</b>Et, malzeme, sos; hamur, çikolata, meyve. Ne istemiyorsa seçmez.</figcaption></figure>
 <figure><img src="/assets/img/waffle4.jpg" alt="Çikolata ve meyve eklenmiş waffle" loading="lazy"><figcaption><b>2. Görür</b>Her seçimde ürün ekranda gözünün önünde oluşur, fiyat anında hesaplanır.</figcaption></figure>
-<figure><img src="/assets/img/waffle6.jpg" alt="Tamamlanmış waffle" loading="lazy"><figcaption><b>3. Sipariş verir</b>Sipariş masa numarasıyla tezgâhtaki ekrana düşer; yazıldığı gibi.</figcaption></figure></div>
-<div class="kpk"><div><h3>Kafe &amp; Tatlıcı paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
+<figure><img src="/assets/img/siparis_kart.jpg" alt="Tezgâh ekranına düşen sipariş" loading="lazy"><figcaption><b>3. Sipariş verir</b>Sipariş masa numarasıyla tezgâh ekranına düşer; yazıldığı gibi.</figcaption></figure></div>
+<div class="prods"><h3>Hangi ürün olursa olsun</h3><div class="pr-row">
+<a class="prc" href="/demo/waffle/?masa=B1" target="_blank" rel="noopener"><img src="/assets/img/waffle6.jpg" alt="Waffle" loading="lazy"><span><b>Waffle &amp; tatlı</b>Demoyu dene</span></a>
+<a class="prc" href="https://burger.creamodul.com" target="_blank" rel="noopener"><img src="/assets/img/burger_kare.jpg" alt="Burger" loading="lazy"><span><b>Burger</b>Demoyu dene</span></a>
+<a class="prc ph" href="/siparis/?modul=kafe"><div class="ic">+</div><span><b>Sizin ürününüz</b>Bowl, pizza, krep, kahve, dürüm…</span></a></div></div>
+<div class="kpk"><div><h3>Kafe &amp; Restoran paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
 <div class="kp"><small>kurulum</small><b>6.000 TL</b><small>+ 1.200 TL / ay · ilk ay ücretsiz · KDV hariç</small></div>
-<div class="acts"><a class="btn gh" href="{KDEMO}" target="_blank" rel="noopener">Demoyu dene</a><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
+<div class="acts"><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
 <section id="moduller" class="alt"><div class="w"><div class="sh"><h2>Diğer sektörler</h2><p>Aynı yaklaşım başka işletmeler için de hazır.</p></div><div class="cat">{rows}</div></div></section>
 <section id="surec"><div class="w"><div class="sh"><h2>Siparişten teslime</h2><p>Kurulum için yanınıza gelmemiz gerekmiyor; her adım uzaktan ilerliyor.</p></div>
 <div class="steps"><div class="st"><h3>Paketi seçin</h3><p>Demoyu deneyin, paketinizi ve ekstralarınızı seçin.</p></div>
