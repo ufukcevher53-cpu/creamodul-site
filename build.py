@@ -32,9 +32,9 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=5">{extra_head}</head><body>
+<link rel="stylesheet" href="/assets/style.css?v=6">{extra_head}</head><body>
 <header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa">{LOGO}</a>
-<nav class="mn" aria-label="Ana menü"><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
+<nav class="mn" aria-label="Ana menü"><a class="hm" href="/yapabildiklerimiz/">Yapabildiklerimiz</a><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
 <main>{body}</main>
 <footer><div class="w"><div><a class="logo" href="/">{LOGO}</a><p>İşletmelere hazır dijital modüller. Paketinizi seçin, bilgilerinizi verin; 4–5 iş gününde kurup teslim edelim.</p></div>
 <div><b>Modüller</b>{''.join(f'<a href="/moduller/{m["slug"]}/">{E(title_of(m))}</a>' for m in MODS)}</div>
@@ -71,6 +71,7 @@ faq = [("Teslim ne kadar sürer?", "Ödeme onayından sonra 4–5 iş günü iç
        ("Teknik bilgim yok, kullanabilir miyim?", "Evet. Müşteriniz QR'ı okutur, sipariş ekranınıza düşer. Aylık planlarda menü ve fiyat değişikliklerini biz yapıyoruz."),
        ("İşletmeme özel bir şey istiyorum.", "Sipariş sayfasında “Sektörüme özel modül”ü seçip fikrinizi yazın, size özel teklif hazırlayalım.")]
 FAQLD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+CHIPS = "".join(f'<span class="cx"><i class="dot {c}"></i>{E(t)}</span>' for t, c in [("Ürün oluşturucu ile sipariş","kafe"),("QR menü","kafe"),("Alerjen ve kalori bilgili menü","kafe"),("Tezgâh ekranı, garson çağırma","kafe"),("Google yorum kartı","yorum"),("İşletme web sitesi","yorum"),("Reklam filmi","cicek"),("Gerçekçi ürün görselleri","cicek"),("Sosyal medya gönderileri","cicek"),("Size özel modül","anatomi")])
 body = f"""<section class="hero kh"><div class="w"><div>
 <p class="eyebrow">Kafe, burgerci ve tatlıcılar için sipariş modülü</p>
 <h1>Siparişi müşteri kendisi oluştursun.</h1>
@@ -93,6 +94,7 @@ body = f"""<section class="hero kh"><div class="w"><div>
 <div class="kpk"><div><h3>Kafe &amp; Restoran paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
 <div class="kp"><small>kurulum</small><b>6.000 TL</b><small>+ 1.200 TL / ay · ilk ay ücretsiz · KDV hariç</small></div>
 <div class="acts"><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
+<section id="yap"><div class="w"><div class="sh"><h2>Sadece sipariş değil</h2><p>QR menüden reklam filmine, işletmenizin dijital tarafını tek elden kuruyoruz.</p></div><div class="chipsx">{CHIPS}</div><div style="margin-top:22px"><a class="btn br" href="/yapabildiklerimiz/">Yapabildiklerimizin hepsi</a></div></div></section>
 <section id="moduller" class="alt"><div class="w"><div class="sh"><h2>Diğer sektörler</h2><p>Aynı yaklaşım başka işletmeler için de hazır.</p></div><div class="cat">{rows}</div></div></section>
 <section id="surec"><div class="w"><div class="sh"><h2>Siparişten teslime</h2><p>Kurulum için yanınıza gelmemiz gerekmiyor; her adım uzaktan ilerliyor.</p></div>
 <div class="steps"><div class="st"><h3>Paketi seçin</h3><p>Demoyu deneyin, paketinizi ve ekstralarınızı seçin.</p></div>
@@ -203,8 +205,52 @@ document.getElementById("ref").onclick=load;document.getElementById("flt").oncha
 </script>"""
 page("/panel/", "Sipariş paneli | Creamodul", "Yönetim paneli", body, noindex=True, scripts=panel_js)
 
+
+# ---------- Yapabildiklerimiz ----------
+CAPS = [
+ ("Sipariş ve menü", "kafe", [
+   ("Ürün oluşturucu ile sipariş", "Müşteri waffle'ını, burgerini, bowl'unu adım adım kendisi oluşturur; ürün ekranda gözünün önünde değişir, fiyat anında hesaplanır.", "/demo/waffle/?masa=B1"),
+   ("QR menü", "Sade, hızlı dijital menü. Fotoğraflı ürünler, kategoriler, fiyat güncellemesi. Basılı menü derdi biter.", None),
+   ("Alerjen ve kalori bilgisi", "Menüde içerik, alerjen ve kalori bilgisini gösteririz; toplu tüketim yerleri için getirilen bilgilendirme zorunluluğuna uygun menü.", None),
+   ("Masadan sipariş ve tezgâh ekranı", "Sipariş masa numarasıyla tezgâhtaki ekrana düşer; sesli uyarı, onay ve hazırlanıyor durumu.", None),
+   ("Garson çağırma ve hesap isteme", "Müşteri tek dokunuşla garson çağırır ya da hesabı ister; bildirim tezgâha gelir.", None),
+   ("Menü ve stok yönetimi", "Biten ürünü “bugün yok” yapın, fiyat değiştirin; menü anında güncellenir.", None)]),
+ ("Görünürlük", "yorum", [
+   ("Google yorum kartı ve standı", "Masaya ve kasaya markanıza özel kart; müşteri tek okutmayla yorum ekranınıza gider.", "/moduller/google-yorum-karti/"),
+   ("Google işletme profili düzenleme", "Saatler, fotoğraflar, kategori ve menü linki; müşterinin sizi ilk gördüğü yer düzgün olsun.", None),
+   ("İşletme web sitesi", "Hızlı, mobil uyumlu, alan adınızla; menü, konum, iletişim ve sipariş tek yerde.", None)]),
+ ("İçerik ve reklam", "cicek", [
+   ("Reklam filmleri", "Sosyal medya diline uygun, kancalı kısa reklam videoları. Instagram Reels ve TikTok formatında.", "#ornek"),
+   ("Gerçekçi ürün görselleri", "Menünüz için stüdyo kalitesinde ürün ve malzeme görselleri; çekim yapmadan.", None),
+   ("Sosyal medya gönderileri", "Kaydırmalı gönderi, tek görsel ve kısa video planı; paylaşım takvimiyle birlikte.", None)]),
+ ("Sektöre özel", "anatomi", [
+   ("Çiçekçiler için buket oluşturucu", "Müşteri çiçeğini, yeşilliğini, ambalajını seçer; buket ekranda oluşur.", "/moduller/cicekci-buket-olusturucu/"),
+   ("Klinikler için 3D anatomi videoları", "Hastalığın vücutta nasıl ilerlediğini gösteren, kliniğinizin logolu 3D videoları.", "https://anatomi.creamodul.com"),
+   ("Size özel modül", "Aklınızdaki fikri anlatın; işletmenize özel dijital aracı tasarlayıp kuralım.", "/siparis/?modul=ozel")]),
+]
+def caps_html(limit=None):
+    out = ""
+    for grp, col, items in CAPS:
+        cards = ""
+        for t, d, link in items[:limit] if limit else items:
+            a = f'<a class="cl" href="{link}"{" target=_blank rel=noopener" if link.startswith("http") else ""}>Gör</a>' if link else ""
+            cards += f'<div class="cap"><i class="dot {col}"></i><h3>{E(t)}</h3><p>{E(d)}</p>{a}</div>'
+        out += f'<div class="capg"><h3 class="gt">{E(grp)}</h3><div class="caps">{cards}</div></div>'
+    return out
+cbody = f"""<section class="hero" style="padding-bottom:40px"><div class="w" style="display:block;max-width:900px">
+<div class="crumb"><a href="/">Ana sayfa</a> / Yapabildiklerimiz</div>
+<h1>Yapabildiklerimiz</h1>
+<p class="lead">Sade bir QR menüden müşterinin kendi ürününü oluşturduğu sipariş sistemine, reklam filminden web sitesine kadar işletmenizin dijital tarafını tek elden kuruyoruz. Hepsi uzaktan, hepsi sizin markanızla.</p>
+<div class="cta"><a class="btn br" href="/siparis/">Teklif / sipariş</a><a class="btn gh" href="https://www.instagram.com/creamodul/" rel="noopener">Instagram'dan yazın</a></div></div></section>
+<section class="alt"><div class="w">{caps_html()}</div></section>
+<section id="ornek"><div class="w split"><div class="vid"><video src="/assets/vid/reklam.mp4" poster="/assets/vid/reklam.jpg" controls playsinline preload="none"></video></div>
+<div><h2>Örnek: kafe reklam filmi</h2><p class="lead">Kancası ilk 2 saniyede, altyazılı, müzikli; Reels ve TikTok için. Senaryodan kurguya biz hazırlıyoruz.</p>
+<div class="cta"><a class="btn br" href="/siparis/?modul=ozel">Bize anlatın</a></div></div></div></section>"""
+page("/yapabildiklerimiz/", "Yapabildiklerimiz | Creamodul: QR menü, ürün oluşturucu, reklam filmi, web sitesi",
+     "QR menü, müşterinin kendi oluşturduğu sipariş sistemi, alerjen ve kalori bilgili menü, Google yorum kartı, web sitesi, reklam filmi ve ürün görselleri. Uzaktan kurulum.", cbody)
+
 page("/404.html", "Sayfa bulunamadı | Creamodul", "Aradığınız sayfa bulunamadı.", """<section class="hero"><div class="w" style="display:block"><h1>Bu sayfa yok</h1><p class="lead">Adres değişmiş ya da yanlış yazılmış olabilir.</p><div class="cta"><a class="btn br" href="/">Ana sayfa</a><a class="btn gh" href="/#moduller">Modüller</a></div></div></section>""", noindex=True)
-urls = ["/", "/siparis/", "/kvkk/"] + [f"/moduller/{m['slug']}/" for m in MODS]
+urls = ["/", "/yapabildiklerimiz/", "/siparis/", "/kvkk/"] + [f"/moduller/{m['slug']}/" for m in MODS]
 open(os.path.join(ROOT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "".join(f"<url><loc>{BASE}{u}</loc><lastmod>2026-11-15</lastmod></url>" for u in urls) + "</urlset>\n")
 open(os.path.join(ROOT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /panel/\nSitemap: {BASE}/sitemap.xml\n")
 open(os.path.join(ROOT, "CNAME"), "w").write("creamodul.com\n")

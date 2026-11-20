@@ -179,3 +179,15 @@ footer .cp{grid-column:1/-1;border-top:1px solid #2A2D36;padding-top:20px;margin
 .prc b{display:block;color:var(--ink);font-family:var(--disp);font-size:16px}
 .prc span{font-size:14px}
 @media(max-width:860px){.pr-row{grid-template-columns:1fr}.phones{height:560px}}
+.dot{display:inline-block;width:12px;height:12px;border-radius:4px;flex:none}
+.dot.kafe{background:var(--kafe)}.dot.yorum{background:var(--yorum)}.dot.cicek{background:var(--cicek)}.dot.anatomi{background:var(--anatomi)}
+.chipsx{display:flex;flex-wrap:wrap;gap:10px}
+.cx{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:600;font-size:15px;color:var(--ink)}
+.capg{margin-bottom:44px}.capg .gt{font-family:var(--disp);font-size:24px;margin:0 0 16px}
+.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cap{background:#fff;border:1px solid var(--line);border-radius:var(--r-l);padding:22px 22px 20px;position:relative}
+.cap .dot{width:16px;height:16px;border-radius:5px;margin-bottom:12px}
+.cap h3{font-family:var(--disp);font-size:18px;margin:0 0 8px;line-height:1.25}
+.cap p{margin:0;color:var(--mute);font-size:15px}
+.cap .cl{display:inline-block;margin-top:12px;font-weight:700;color:var(--brand);text-decoration:none;font-size:14px}
+@media(max-width:860px){.caps{grid-template-columns:1fr}}
