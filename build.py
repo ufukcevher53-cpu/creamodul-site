@@ -92,7 +92,7 @@ body = f"""<section class="hero kh"><div class="w"><div>
 <a class="prc" href="https://burger.creamodul.com" target="_blank" rel="noopener"><img src="/assets/img/burger_kare.jpg" alt="Burger" loading="lazy"><span><b>Burger</b>Demoyu dene</span></a>
 <a class="prc ph" href="/siparis/?modul=kafe"><div class="ic">+</div><span><b>Sizin ürününüz</b>Bowl, pizza, krep, kahve, dürüm…</span></a></div></div>
 <div class="kpk"><div><h3>Kafe &amp; Restoran paketi</h3><p>Kendi ürünlerinize göre oluşturucu, masa kodları, tezgâh ekranı, garson çağırma ve hesap isteme. Menü değişikliklerini biz yaparız.</p></div>
-<div class="kp"><span class="lz">Lansman fiyatı · ilk 6 işletmeye özel</span><small>kurulum</small><b><s>6.000</s> 3.000 TL</b><small>+ <s>1.200</s> 700 TL / ay · ilk ay ücretsiz · KDV hariç</small><small style="color:var(--ink);margin-top:4px">🎁 Hediye: 1 tanıtım Reels'i + Google yorum kartı</small></div>
+<div class="kp"><span class="lz">3 paket · her bütçeye</span><small>QR Menü</small><b>750 TL</b><small>Oluşturucu <b style="font-size:inherit">1.900 TL</b> · Sınırsız <b style="font-size:inherit">3.000 TL</b></small><small>+ aylık 300 / 500 / 700 TL · ilk ay ücretsiz · KDV hariç</small></div>
 <div class="acts"><a class="btn br" href="/moduller/{KAFE['slug']}/">Paketleri gör</a></div></div></div></section>
 <section id="yap"><div class="w"><div class="sh"><h2>Sadece sipariş değil</h2><p>QR menüden reklam filmine, işletmenizin dijital tarafını tek elden kuruyoruz.</p></div><div class="chipsx">{CHIPS}</div><div style="margin-top:22px"><a class="btn br" href="/yapabildiklerimiz/">Yapabildiklerimizin hepsi</a></div></div></section>
 <section id="moduller" class="alt"><div class="w"><div class="sh"><h2>Diğer sektörler</h2><p>Aynı yaklaşım başka işletmeler için de hazır.</p></div><div class="cat">{rows}</div></div></section>
@@ -167,7 +167,7 @@ body = """<section style="padding-top:48px"><div class="w"><div id="formWrap"><d
 <p class="sm mute" style="margin-top:8px">Daha hızlı ilerlemek isterseniz sipariş numaranızla bize Instagram'dan yazabilirsiniz.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><a class="btn br" id="igBtn" href="https://ig.me/m/creamodul" target="_blank" rel="noopener">Instagram'dan yaz</a><button class="btn gh" id="cpBtn" type="button">Mesajı kopyala</button><a class="btn gh" href="/">Ana sayfa</a></div></div></div></div></section>"""
 page("/siparis/", "Sipariş ver | Creamodul", "Creamodul modülünüzü seçin, paket ve ekstraları belirleyin, bilgilerinizi verin. Siparişiniz oluşsun, 4–5 iş gününde teslim edelim.",
-     body, scripts='<script src="/assets/data.js?v=3"></script><script src="/assets/order.js?v=3"></script>')
+     body, scripts='<script src="/assets/data.js?v=4"></script><script src="/assets/order.js?v=4"></script>')
 
 body = """<section style="padding-top:48px"><div class="w prose"><h1 style="font-size:40px">KVKK aydınlatma metni</h1>
 <p class="mute">Son güncelleme: 15 Kasım 2026</p>

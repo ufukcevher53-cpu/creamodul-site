@@ -19,54 +19,67 @@ window.CM = {
   ],
   "packages": [
    {
-    "id": "kafe-aylik",
-    "name": "Aylık Plan",
+    "id": "kafe-temel",
+    "name": "QR Menü",
+    "setup": 750,
+    "monthly": 300,
+    "features": [
+     "Masaya özel QR kodlarla dijital menü (ürünler liste şeklinde, fotoğraflı)",
+     "Ürün içerik, alerjen ve kalori bilgisi (31 Aralık 2026 zorunluluğuna uygun)",
+     "Biten ürünü tek dokunuşla kapatma",
+     "Menü ve fiyat değişiklikleri bizden (ayda 2 güncelleme)",
+     "İlk ay ücretsiz"
+    ]
+   },
+   {
+    "id": "kafe-olusturucu",
+    "name": "Oluşturucu",
+    "setup": 1900,
+    "monthly": 500,
+    "features": [
+     "QR Menü paketindeki her şey",
+     "1 ürün için oluşturucu: müşteri waffle'ını, burgerini ya da tostunu malzemesini seçerek kendisi yapar, fiyat anında hesaplanır",
+     "Masada sipariş: aynı masadan birden çok telefonla ve kişi adıyla sipariş",
+     "Siparişler kasa / mutfak ekranına sesli uyarıyla düşer; garson çağır ve hesap iste düğmeleri",
+     "Her ek ürün oluşturucu +500 TL",
+     "Menü ve fiyat değişiklikleri bizden",
+     "İlk ay ücretsiz"
+    ]
+   },
+   {
+    "id": "kafe-sinirsiz",
+    "name": "Sınırsız",
     "setup": 3000,
     "monthly": 700,
     "hl": true,
     "features": [
-     "1 ürün için oluşturucu (ör. waffle ya da burger); menünün geri kalanı (içecek, tatlı vb.) liste olarak",
-     "Masada sipariş: masaya özel QR kodlar, aynı masadan birden çok telefonla ve kişi adıyla sipariş",
-     "Kasa / mutfak ekranı, sesli uyarı, garson çağır ve hesap iste düğmeleri",
-     "Ürün içerik, alerjen ve kalori bilgisi alanları (31 Aralık 2026 zorunluluğuna uygun)",
-     "Biten ürünü tek dokunuşla kapatma; menü ve fiyat değişiklikleri bizden",
-     "İlk ay ücretsiz",
-     "Hediye: kendi ürününüzden 1 tanıtım Reels'i + Google yorum kartı tasarımı"
+     "Oluşturucu paketindeki her şey",
+     "Menüdeki tüm ürünler için oluşturucu (waffle, burger, tost, kumru… ürün sınırı yok)",
+     "Masada sipariş + paket sipariş linki: adres, konum, kapıda ödeme seçimi, sipariş durum takibi",
+     "Instagram ve Google profilinize koyabileceğiniz sipariş linki",
+     "Masa QR kartı tasarımı ve Google yorum kartı tasarımı",
+     "Hediye: kendi ürününüzden 1 tanıtım Reels'i",
+     "Menü ve fiyat değişiklikleri bizden, sınırsız",
+     "İlk ay ücretsiz"
     ],
-    "was": {
-     "setup": 6000,
-     "monthly": 1200
-    },
-    "badge": "Lansman fiyatı · ilk 6 işletmeye özel"
-   },
-   {
-    "id": "kafe-tek",
-    "name": "Tek Seferlik",
-    "setup": 18000,
-    "yearly": 3000,
-    "features": [
-     "Aylık plandaki her şey",
-     "Menüyü, fiyatları ve ürünleri kendiniz yöneteceğiniz yönetici paneli",
-     "Günlük stok / ürün açma-kapama",
-     "İlk yıl bakım dahil, sonrası yıllık bakım"
-    ]
+    "badge": "En çok tercih edilen"
    }
   ],
   "extras": [
    {
+    "id": "ekurun",
+    "name": "Ek ürün oluşturucu (Oluşturucu paketi için)",
+    "price": 500
+   },
+   {
     "id": "paket",
-    "name": "Paket sipariş linki: adres, konum, kapıda ödeme seçimi, sipariş durum takibi",
-    "price": 1500
+    "name": "Paket sipariş linki (Oluşturucu paketi için)",
+    "price": 1000
    },
    {
     "id": "online",
     "name": "Online kartla ödeme (sizin iyzico / PayTR hesabınızla)",
     "price": 2500
-   },
-   {
-    "id": "ikinci",
-    "name": "İkinci ürün için oluşturucu (ör. waffle'a ek burger)",
-    "price": 1500
    },
    {
     "id": "gorsel",
@@ -75,13 +88,8 @@ window.CM = {
    },
    {
     "id": "qrbaski",
-    "name": "Masa QR baskı tasarımı (10 masa)",
+    "name": "Masa QR kartlarının basılı teslimi (10 masa)",
     "price": 750
-   },
-   {
-    "id": "yorum",
-    "name": "Sipariş sonrası Google yorum yönlendirmesi",
-    "price": 500
    },
    {
     "id": "alanadi",
