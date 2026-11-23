@@ -167,7 +167,7 @@ body = """<section style="padding-top:48px"><div class="w"><div id="formWrap"><d
 <p class="sm mute" style="margin-top:8px">Daha hızlı ilerlemek isterseniz sipariş numaranızla bize Instagram'dan yazabilirsiniz.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><a class="btn br" id="igBtn" href="https://ig.me/m/creamodul" target="_blank" rel="noopener">Instagram'dan yaz</a><button class="btn gh" id="cpBtn" type="button">Mesajı kopyala</button><a class="btn gh" href="/">Ana sayfa</a></div></div></div></div></section>"""
 page("/siparis/", "Sipariş ver | Creamodul", "Creamodul modülünüzü seçin, paket ve ekstraları belirleyin, bilgilerinizi verin. Siparişiniz oluşsun, 4–5 iş gününde teslim edelim.",
-     body, scripts='<script src="/assets/data.js?v=2"></script><script src="/assets/order.js?v=3"></script>')
+     body, scripts='<script src="/assets/data.js?v=3"></script><script src="/assets/order.js?v=3"></script>')
 
 body = """<section style="padding-top:48px"><div class="w prose"><h1 style="font-size:40px">KVKK aydınlatma metni</h1>
 <p class="mute">Son güncelleme: 15 Kasım 2026</p>
