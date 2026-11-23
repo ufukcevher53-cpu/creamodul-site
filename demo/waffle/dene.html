@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sipariş sistemi demosu · Creamodul</title><meta name="robots" content="noindex">
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#eef2f1;color:#14211F}
+.top{padding:14px 20px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:#fff;border-bottom:1px solid #dde3e2}
+.top b{font-size:18px}.top span{color:#4B5755;font-size:14px}
+.mode{display:flex;gap:6px}.mode a{padding:9px 14px;border-radius:999px;border:1.5px solid #cfd8d6;text-decoration:none;color:#14211F;font-weight:700;font-size:14px}.mode a.on{background:#0F6B62;border-color:#0F6B62;color:#fff}
+.wrap{display:flex;gap:20px;padding:20px;align-items:flex-start}
+.ph{flex:none;width:390px;height:800px;border:12px solid #14211F;border-radius:44px;overflow:hidden;background:#fff}
+.ph iframe,.ks iframe{width:100%;height:100%;border:0}
+.ks{flex:1;min-width:0;height:824px;border-radius:16px;overflow:hidden;border:1px solid #d5dcdb;background:#fff}
+.cap{font-weight:800;font-size:13px;color:#4B5755;margin:0 0 8px 4px}
+@media(max-width:900px){.wrap{flex-direction:column}.ph{width:100%;max-width:390px}.ks{width:100%}}
+</style>
+</head>
+<body>
+<div class="top"><b>Sipariş sistemi demosu</b><span>Solda müşterinin telefonu, sağda işletmenin kasa ekranı. Soldan sipariş verin, sağda anında görün.</span>
+<div class="mode" id="mode"></div></div>
+<div class="wrap">
+  <div><p class="cap">MÜŞTERİ TELEFONU</p><div class="ph"><iframe id="m" title="Müşteri menüsü"></iframe></div></div>
+  <div style="flex:1;min-width:0"><p class="cap">KASA EKRANI (önce "Başlat"a dokunun)</p><div class="ks"><iframe src="kasa.html?v=1" title="Kasa ekranı"></iframe></div></div>
+</div>
+<script>
+const P=new URLSearchParams(location.search); const mod=P.get("mod")==="masa"?"masa":"paket";
+document.getElementById("m").src = mod==="paket" ? "./?masa=P" : "./?masa=B1";
+document.getElementById("mode").innerHTML = `<a href="?mod=paket" class="${mod==="paket"?"on":""}">🛵 Paket sipariş</a><a href="?mod=masa" class="${mod==="masa"?"on":""}">🍽️ Masada sipariş</a>`;
+</script>
+<script data-goatcounter="https://creamodul.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

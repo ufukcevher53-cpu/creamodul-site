@@ -6,7 +6,8 @@ window.MENU = {
     { id: "B1", name: "Bahçe 1" }, { id: "B2", name: "Bahçe 2" }, { id: "B3", name: "Bahçe 3" },
     { id: "B4", name: "Bahçe 4" }, { id: "B5", name: "Bahçe 5" },
     { id: "I1", name: "İç 1" }, { id: "I2", name: "İç 2" }, { id: "I3", name: "İç 3" },
-    { id: "I4", name: "İç 4" }, { id: "I5", name: "İç 5" }
+    { id: "I4", name: "İç 4" }, { id: "I5", name: "İç 5" },
+    { id: "P", name: "Paket sipariş" }
   ],
   steps: [
     { id: "hamur", title: "Hamurunu seç", short: "Hamur", single: true, required: true, items: [
