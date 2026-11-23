@@ -17,61 +17,41 @@
   ],
   "packages": [
    {
-    "id": "kafe-temel",
-    "name": "QR Menü",
-    "setup": 750,
-    "monthly": 300,
-    "features": [
-     "Masaya özel QR kodlarla dijital menü (ürünler liste şeklinde, fotoğraflı)",
-     "Ürün içerik, alerjen ve kalori bilgisi (31 Aralık 2026 zorunluluğuna uygun)",
-     "Biten ürünü tek dokunuşla kapatma",
-     "Menü ve fiyat değişiklikleri bizden (ayda 2 güncelleme)",
-     "İlk ay ücretsiz"
-    ]
-   },
-   {
-    "id": "kafe-olusturucu",
-    "name": "Oluşturucu",
+    "id": "kafe-waffle",
+    "name": "Waffle",
     "setup": 2500,
     "monthly": 500,
+    "hl": true,
     "features": [
-     "QR Menü paketindeki her şey",
-     "1 ürün için oluşturucu: müşteri waffle'ını, burgerini ya da tostunu malzemesini seçerek kendisi yapar, fiyat anında hesaplanır",
-     "Masada sipariş: aynı masadan birden çok telefonla ve kişi adıyla sipariş",
+     "Waffle ya da kova waffle için oluşturucu: müşteri hamurunu, çikolatasını, meyvesini ve süslemesini kendisi seçer, fiyat anında hesaplanır",
+     "Masaya özel QR kodlar; aynı masadan birden çok telefonla ve kişi adıyla sipariş",
      "Siparişler kasa / mutfak ekranına sesli uyarıyla düşer; garson çağır ve hesap iste düğmeleri",
-     "Her ek ürün oluşturucu +500 TL",
-     "Menü ve fiyat değişiklikleri bizden",
+     "Ürün içerik, alerjen ve kalori bilgisi (31 Aralık 2026 zorunluluğuna uygun)",
+     "Menünün geri kalanı (içecek, tatlı vb.) liste olarak",
+     "Biten ürünü tek dokunuşla kapatma; menü ve fiyat değişiklikleri bizden",
      "İlk ay ücretsiz"
     ]
    },
    {
-    "id": "kafe-sinirsiz",
-    "name": "Sınırsız",
-    "setup": 3000,
-    "monthly": 700,
-    "hl": true,
+    "id": "kafe-diger",
+    "name": "Diğer ürünler",
+    "setup": 2750,
+    "monthly": 600,
     "features": [
-     "Oluşturucu paketindeki her şey",
-     "Menüdeki tüm ürünler için oluşturucu (waffle, burger, tost, kumru… ürün sınırı yok)",
-     "Masada sipariş + paket sipariş linki: adres, konum, kapıda ödeme seçimi, sipariş durum takibi",
-     "Instagram ve Google profilinize koyabileceğiniz sipariş linki",
-     "Masa QR kartı tasarımı ve Google yorum kartı tasarımı",
-     "Hediye: kendi ürününüzden 1 tanıtım Reels'i",
-     "Menü ve fiyat değişiklikleri bizden, sınırsız",
+     "Burger, tost, kumru, kumpir, bowl, pizza… seçtiğiniz ürün için oluşturucu: müşteri malzemelerini kendisi seçer, fiyat anında hesaplanır",
+     "Masaya özel QR kodlar; aynı masadan birden çok telefonla ve kişi adıyla sipariş",
+     "Siparişler kasa / mutfak ekranına sesli uyarıyla düşer; garson çağır ve hesap iste düğmeleri",
+     "Ürün içerik, alerjen ve kalori bilgisi (31 Aralık 2026 zorunluluğuna uygun)",
+     "Menünün geri kalanı (içecek, tatlı vb.) liste olarak",
+     "Biten ürünü tek dokunuşla kapatma; menü ve fiyat değişiklikleri bizden",
      "İlk ay ücretsiz"
-    ],
-    "badge": "En çok tercih edilen"
+    ]
    }
   ],
   "extras": [
    {
-    "id": "ekurun",
-    "name": "Ek ürün oluşturucu (Oluşturucu paketi için)",
-    "price": 500
-   },
-   {
     "id": "paket",
-    "name": "Paket sipariş linki (Oluşturucu paketi için)",
+    "name": "Paket sipariş linki: adres, konum, kapıda ödeme seçimi, sipariş durum takibi",
     "price": 1000
    },
    {
