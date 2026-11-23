@@ -32,14 +32,14 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=7">{extra_head}</head><body>
+<link rel="stylesheet" href="/assets/style.css?v=8">{extra_head}</head><body>
 <header class="top"><div class="w"><a class="logo" href="/" aria-label="Creamodul ana sayfa">{LOGO}</a>
 <nav class="mn" aria-label="Ana menü"><a class="hm" href="/yapabildiklerimiz/">Yapabildiklerimiz</a><a class="hm" href="/#moduller">Modüller</a><a class="hm" href="/#surec">Süreç</a><a class="hm" href="/#sss">Sorular</a><a class="btn sm" href="/siparis/">Sipariş ver</a></nav></div></header>
 <main>{body}</main>
 <footer><div class="w"><div><a class="logo" href="/">{LOGO}</a><p>İşletmelere hazır dijital modüller. Paketinizi seçin, bilgilerinizi verin; 4–5 iş gününde kurup teslim edelim.</p></div>
 <div><b>Modüller</b>{''.join(f'<a href="/moduller/{m["slug"]}/">{E(title_of(m))}</a>' for m in MODS)}</div>
 <div><b>İletişim</b><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram: @creamodul</a><a href="/siparis/?modul=ozel">Özel modül talebi</a><a href="/kvkk/">KVKK aydınlatma metni</a></div>
-<div class="cp">© 2026 Creamodul</div></div></footer>{scripts}</body></html>"""
+<div class="cp">© 2026 Creamodul</div></div></footer><a class="igfab" href="https://ig.me/m/creamodul" target="_blank" rel="noopener" aria-label="Instagram'dan mesaj gönder"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>Bize yazın</span></a>{scripts}</body></html>"""
     if path.endswith(".html"):
         open(os.path.join(ROOT, path.strip("/")), "w").write(out); return
     d = os.path.join(ROOT, path.strip("/")); os.makedirs(d, exist_ok=True)
