@@ -34,7 +34,7 @@ window.CM = {
    {
     "id": "kafe-olusturucu",
     "name": "Oluşturucu",
-    "setup": 1900,
+    "setup": 2500,
     "monthly": 500,
     "features": [
      "QR Menü paketindeki her şey",
