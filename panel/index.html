@@ -37,4 +37,4 @@ ${r.note?`<p class="sm"><b>Not:</b> ${esc(r.note)}</p>`:""}
 document.querySelectorAll("select[data-id]").forEach(s=>s.onchange=()=>rpc("cm_set_status",{p_pin:PIN,p_id:+s.dataset.id,p_status:s.value}).then(()=>{const r=ALL.find(x=>x.id==s.dataset.id);if(r)r.status=s.value}).catch(()=>alert("Durum kaydedilemedi, tekrar deneyin.")))}
 document.getElementById("go").onclick=()=>{PIN=document.getElementById("pin").value;load()};document.getElementById("pin").onkeydown=e=>{if(e.key==="Enter"){PIN=e.target.value;load()}};
 document.getElementById("ref").onclick=load;document.getElementById("flt").onchange=draw;if(PIN)load();setInterval(()=>{if(PIN&&!document.hidden)load()},60000);
-</script></body></html>
+</script><script data-goatcounter="https://creamodul.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
