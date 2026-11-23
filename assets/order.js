@@ -69,7 +69,8 @@
     if (!mod) { err.textContent = "Lütfen bir modül seçin."; err.style.display = "block"; return; }
     if (!f.reportValidity()) return;
     if (!$("#kvkk").checked) { err.textContent = "Devam etmek için aydınlatma metnini onaylayın."; err.style.display = "block"; return; }
-    const details = {}; document.querySelectorAll("#dets [data-k]").forEach(i => details[i.dataset.k] = i.value.trim());
+    if (!$("#soz").checked) { err.textContent = "Devam etmek için hizmet sözleşmesini onaylayın."; err.style.display = "block"; return; }
+    const details = {}; document.querySelectorAll("#dets [data-k]").forEach(i => details[i.dataset.k] = i.value.trim()); details.sozlesme_onay = "v1 · 23 Kasım 2026 · " + new Date().toISOString();
     const ex = chosenExtras();
     const body = {
       module: mod === "ozel" ? "ozel" : mod.id,

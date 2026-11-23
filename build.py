@@ -38,7 +38,7 @@ def page(path, title, desc, body, extra_head="", noindex=False, scripts=""):
 <main>{body}</main>
 <footer><div class="w"><div><a class="logo" href="/">{LOGO}</a><p>İşletmelere hazır dijital modüller. Paketinizi seçin, bilgilerinizi verin; 4–5 iş gününde kurup teslim edelim.</p></div>
 <div><b>Modüller</b>{''.join(f'<a href="/moduller/{m["slug"]}/">{E(title_of(m))}</a>' for m in MODS)}</div>
-<div><b>İletişim</b><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram: @creamodul</a><a href="/siparis/?modul=ozel">Özel modül talebi</a><a href="/kvkk/">KVKK aydınlatma metni</a></div>
+<div><b>İletişim</b><a href="https://www.instagram.com/creamodul/" rel="noopener">Instagram: @creamodul</a><a href="/siparis/?modul=ozel">Özel modül talebi</a><a href="/kvkk/">KVKK aydınlatma metni</a><a href="/sozlesme/">Hizmet sözleşmesi</a></div>
 <div class="cp">© 2026 Creamodul</div></div></footer><a class="igfab" href="https://ig.me/m/creamodul" target="_blank" rel="noopener" aria-label="Instagram'dan mesaj gönder"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>Bize yazın</span></a>{scripts}<script data-goatcounter="https://creamodul.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>"""
     if path.endswith(".html"):
         open(os.path.join(ROOT, path.strip("/")), "w").write(out); return
@@ -155,6 +155,7 @@ body = """<section style="padding-top:48px"><div class="w"><div id="formWrap"><d
 <label class="f" for="o_note">Eklemek istedikleriniz</label><textarea class="i" id="o_note"></textarea>
 <input id="o_web" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
 <label class="chk"><input type="checkbox" id="kvkk"><span><a href="/kvkk/" target="_blank">KVKK aydınlatma metnini</a> okudum; siparişim için benimle iletişime geçilmesini kabul ediyorum.</span></label>
+<label class="chk"><input type="checkbox" id="soz"><span><a href="/sozlesme/" target="_blank">Hizmet sözleşmesini</a> okudum ve onaylıyorum.</span></label>
 </div></div>
 <aside class="box sum"><h3>Özet</h3><div id="sumBody"></div><button class="btn br" id="send" type="submit" style="width:100%;margin-top:18px">Siparişi oluştur</button><div class="err" id="err" role="alert"></div>
 <h3 style="margin-top:28px;font-size:16px">Sonra ne olacak?</h3><ol class="next"><li><b>Sipariş numaranız oluşur</b><span>Siparişiniz anında bize ulaşır.</span></li><li><b>1 iş günü içinde ararız</b><span>Detayları netleştirip ödeme bilgisini paylaşırız.</span></li><li><b>4–5 iş gününde teslim</b><span>Ödemeden sonra kurulum başlar.</span></li></ol></aside></form></div>
@@ -166,7 +167,7 @@ body = """<section style="padding-top:48px"><div class="w"><div id="formWrap"><d
 <p class="sm mute" style="margin-top:8px">Daha hızlı ilerlemek isterseniz sipariş numaranızla bize Instagram'dan yazabilirsiniz.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><a class="btn br" id="igBtn" href="https://ig.me/m/creamodul" target="_blank" rel="noopener">Instagram'dan yaz</a><button class="btn gh" id="cpBtn" type="button">Mesajı kopyala</button><a class="btn gh" href="/">Ana sayfa</a></div></div></div></div></section>"""
 page("/siparis/", "Sipariş ver | Creamodul", "Creamodul modülünüzü seçin, paket ve ekstraları belirleyin, bilgilerinizi verin. Siparişiniz oluşsun, 4–5 iş gününde teslim edelim.",
-     body, scripts='<script src="/assets/data.js?v=2"></script><script src="/assets/order.js?v=2"></script>')
+     body, scripts='<script src="/assets/data.js?v=2"></script><script src="/assets/order.js?v=3"></script>')
 
 body = """<section style="padding-top:48px"><div class="w prose"><h1 style="font-size:40px">KVKK aydınlatma metni</h1>
 <p class="mute">Son güncelleme: 15 Kasım 2026</p>
@@ -178,6 +179,21 @@ body = """<section style="padding-top:48px"><div class="w prose"><h1 style="font
 <h3>Ne kadar saklıyoruz?</h3><p>Sipariş ve yasal saklama yükümlülükleri süresince.</p>
 <h3>Haklarınız</h3><p>KVKK'nın 11. maddesi kapsamında verilerinize erişme, düzeltilmesini veya silinmesini isteme haklarına sahipsiniz. Talepleriniz için Instagram üzerinden <a href="https://www.instagram.com/creamodul/">@creamodul</a> hesabına yazabilirsiniz.</p></div></section>"""
 page("/kvkk/", "KVKK aydınlatma metni | Creamodul", "Creamodul sipariş formunda toplanan kişisel verilere ilişkin aydınlatma metni.", body)
+SOZ_V = "v1 · 23 Kasım 2026"
+body = """<section><div class="w" style="max-width:780px"><h1 class="h2">Hizmet sözleşmesi</h1>
+<p class="mute">Sürüm: """ + SOZ_V + """</p>
+<p>Bu sözleşme, Creamodul markası altında dijital sipariş modülü hizmeti veren hizmet sağlayıcı (bundan sonra "Creamodul") ile creamodul.com sipariş formunu dolduran ve bu sözleşmeyi onaylayan işletme (bundan sonra "İşletme") arasında, siparişin Creamodul tarafından onaylanmasıyla kurulur. Creamodul'ün fatura ve unvan bilgileri sipariş onayında İşletme'ye yazılı olarak bildirilir.</p>
+<h3>1. Hizmetin kapsamı</h3><p>Creamodul; seçilen pakete göre müşterinin ürününü kendisinin oluşturduğu sipariş ekranını, masaya özel QR kodları, sipariş ve kasa ekranını, menünün ilk kurulumunu ve destek hizmetini sağlar. Paket siparişte teslimat adresi, telefon ve konum bilgisinin alınması seçilen pakete dahilse sağlanır. Online kartla ödeme, pazar yeri (Trendyol, Yemeksepeti, Getir vb.) entegrasyonları, yazıcı ve tablet gibi donanımlar, aksi yazılı olarak kararlaştırılmadıkça kapsam dışındadır.</p>
+<h3>2. Kurulum ve teslim</h3><p>İşletme, menüsünü, fiyatlarını ve görsel/logo gibi içerikleri Creamodul'e iletir. Creamodul, eksiksiz içeriğin iletilmesinden itibaren genellikle 4–5 iş günü içinde kurulumu uzaktan tamamlar. Menü ve fiyat bilgilerinin doğruluğundan İşletme sorumludur.</p>
+<h3>3. Ücret ve ödeme</h3><p>Ücretler, sipariş anında creamodul.com'da gösterilen ve siparişte seçilen paket fiyatlarıdır (kurulum ücreti ve aylık/yıllık hizmet bedeli). Kurulum ücreti kurulumdan önce ödenir. Kampanya kapsamında sunulan ücretsiz süre bittiğinde aylık bedel her ay peşin ödenir. Vadesinde ödenmeyen bedel için Creamodul, yazılı bildirimden 7 gün sonra hizmeti askıya alabilir. Creamodul fiyat değişikliklerini en az 30 gün önceden bildirir.</p>
+<h3>4. Süre ve fesih</h3><p>Sözleşme aylık olarak kendiliğinden yenilenir. Taraflardan her biri, 30 gün önceden yazılı bildirimde (Instagram mesajı veya e-posta dahil) bulunarak sözleşmeyi sona erdirebilir. Ödenmiş kurulum ücreti iade edilmez. Sözleşme sona erdiğinde İşletme'nin talebi üzerine menü bilgileri İşletme'ye teslim edilir.</p>
+<h3>5. Kişisel veriler</h3><p>Sipariş ekranı üzerinden İşletme'nin müşterilerinden alınan bilgiler (isim, telefon, adres, konum gibi) bakımından veri sorumlusu İşletme'dir; Creamodul bu verileri yalnızca hizmeti sunmak amacıyla, İşletme adına teknik altyapı sağlayıcısı olarak işler, satmaz ve pazarlama amacıyla kullanmaz. İşletme, kendi müşterilerini 6698 sayılı KVKK kapsamında bilgilendirmekle yükümlüdür.</p>
+<h3>6. Hizmet sürekliliği ve sorumluluk</h3><p>Creamodul hizmetin kesintisiz çalışması için makul özeni gösterir; ancak internet bağlantısı, üçüncü taraf altyapı sağlayıcıları veya mücbir sebeplerden kaynaklanan kesintilerden sorumlu değildir. İşletme tarafından yanlış girilen fiyat, ürün veya bilgilerden doğan sonuçlardan İşletme sorumludur. Creamodul'ün bu sözleşmeden doğan toplam sorumluluğu, zararın doğduğu aydan önceki son 3 ayda ödenen hizmet bedeliyle sınırlıdır.</p>
+<h3>7. Fikri mülkiyet</h3><p>Yazılım, tasarım şablonları ve altyapı Creamodul'e aittir; İşletme'ye sözleşme süresince kullanım hakkı tanınır. İşletme'nin menüsü, logosu ve kendi fotoğrafları İşletme'ye aittir. Creamodul, İşletme'nin yazılı onayıyla kurulumu referans olarak (ekran görüntüsü, kısa video) tanıtımlarında kullanabilir.</p>
+<h3>8. Diğer</h3><p>Bu sözleşmede yer almayan konularda Türkiye Cumhuriyeti hukuku uygulanır. Sözleşme değişiklikleri sitede yeni sürüm olarak yayımlanır; mevcut İşletmeler için ancak yazılı bildirimle ve 30 gün sonra yürürlüğe girer. İşletme, sipariş formunda "Hizmet sözleşmesini okudum ve onaylıyorum" kutusunu işaretleyerek bu sözleşmenin tamamını okuduğunu ve kabul ettiğini beyan eder.</p>
+</div></section>"""
+page("/sozlesme/", "Hizmet sözleşmesi | Creamodul", "Creamodul dijital sipariş modülü hizmet sözleşmesi.", body)
+
 
 body = """<section style="padding-top:48px"><div class="w"><h1 style="font-size:36px">Siparişler</h1>
 <div id="login" class="box" style="max-width:420px"><label class="f" for="pin">Panel şifresi</label><input class="i" id="pin" type="password"><button class="btn br" id="go" style="margin-top:16px">Giriş</button><div class="err" id="perr"></div></div>
@@ -250,7 +266,7 @@ page("/yapabildiklerimiz/", "Yapabildiklerimiz | Creamodul: QR menü, ürün olu
      "QR menü, müşterinin kendi oluşturduğu sipariş sistemi, alerjen ve kalori bilgili menü, Google yorum kartı, web sitesi, reklam filmi ve ürün görselleri. Uzaktan kurulum.", cbody)
 
 page("/404.html", "Sayfa bulunamadı | Creamodul", "Aradığınız sayfa bulunamadı.", """<section class="hero"><div class="w" style="display:block"><h1>Bu sayfa yok</h1><p class="lead">Adres değişmiş ya da yanlış yazılmış olabilir.</p><div class="cta"><a class="btn br" href="/">Ana sayfa</a><a class="btn gh" href="/#moduller">Modüller</a></div></div></section>""", noindex=True)
-urls = ["/", "/yapabildiklerimiz/", "/siparis/", "/kvkk/"] + [f"/moduller/{m['slug']}/" for m in MODS]
+urls = ["/", "/yapabildiklerimiz/", "/siparis/", "/kvkk/", "/sozlesme/"] + [f"/moduller/{m['slug']}/" for m in MODS]
 open(os.path.join(ROOT, "sitemap.xml"), "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "".join(f"<url><loc>{BASE}{u}</loc><lastmod>2026-11-15</lastmod></url>" for u in urls) + "</urlset>\n")
 open(os.path.join(ROOT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /panel/\nSitemap: {BASE}/sitemap.xml\n")
 open(os.path.join(ROOT, "CNAME"), "w").write("creamodul.com\n")
