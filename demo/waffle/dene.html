@@ -25,8 +25,10 @@ body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;backgrou
 </div>
 <script>
 const P=new URLSearchParams(location.search); const mod=P.get("mod")==="masa"?"masa":"paket";
-document.getElementById("m").src = mod==="paket" ? "./?masa=P" : "./?masa=B1";
-document.getElementById("mode").innerHTML = `<a href="?mod=paket" class="${mod==="paket"?"on":""}">🛵 Paket sipariş</a><a href="?mod=masa" class="${mod==="masa"?"on":""}">🍽️ Masada sipariş</a>`;
+const K=P.get("kafe"); const kq=K?"&kafe="+encodeURIComponent(K):"";
+document.getElementById("m").src = (mod==="paket" ? "./?masa=P" : "./?masa=B1")+kq;
+document.querySelector(".ks iframe").src="kasa.html?v=1"+kq;
+document.getElementById("mode").innerHTML = `<a href="?mod=paket${kq}" class="${mod==="paket"?"on":""}">🛵 Paket sipariş</a><a href="?mod=masa${kq}" class="${mod==="masa"?"on":""}">🍽️ Masada sipariş</a>`;
 </script>
 <script data-goatcounter="https://creamodul.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
